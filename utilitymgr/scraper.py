@@ -6,11 +6,12 @@ from selenium import webdriver
 download_script = """
 svc = new DataDownloadService(app.logger);
 reqObj = {
-endDate: "05/03/20",
 fileFormat: "XML Format (.xml)",
 serviceAccountAddress: {},
-serviceAccountNumber: "51819453",
-startDate: "04/26/20"};
+serviceAccountNumber: "%s",
+startDate: "%s",
+endDate: "%s"
+};
 return await svc.getDataDownloadFile(reqObj);    
 """
 
@@ -27,7 +28,9 @@ def main():
     driver.find_element_by_id('searchMyAccounts')
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
-    response = driver.execute_script(download_script)
+    # serviceAccountNumber: 51819453 & 51819495
+    script = download_script % ('51819495', '05/07/20', '05/13/20')
+    response = driver.execute_script(script)
     with open('data.xml', 'w') as data_file:
         data_file.write(response)
     pass
