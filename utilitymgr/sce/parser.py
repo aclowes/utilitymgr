@@ -13,4 +13,4 @@ def main(data_file):
 
 
 if __name__ == '__main__':
-    main('data.xml')
+    main('data/data.xml')

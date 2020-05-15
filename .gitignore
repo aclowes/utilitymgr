@@ -1,4 +1,4 @@
 .python-version
 chromedriver
-data.*
+data/
 .idea/

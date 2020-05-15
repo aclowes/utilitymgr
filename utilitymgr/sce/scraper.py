@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 
 from selenium import webdriver
 
@@ -28,12 +29,13 @@ def main():
     driver.find_element_by_id('searchMyAccounts')
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
-    # serviceAccountNumber: 51819453 & 51819495
-    script = download_script % ('51819495', '05/07/20', '05/13/20')
-    response = driver.execute_script(script)
-    with open('data.xml', 'w') as data_file:
-        data_file.write(response)
-    pass
+    for account in os.environ['SCE_ACCOUNTS'].split(' '):
+        end_date = datetime.date.today().strftime('%m/%d/%Y')
+        start_date = (datetime.date.today() - datetime.timedelta(days=7)).strftime('%m/%d/%Y')
+        script = download_script % (account, start_date, end_date)
+        response = driver.execute_script(script)
+        with open(f'data/sce_{account}.xml', 'w') as data_file:
+            data_file.write(response)
 
 
 if __name__ == '__main__':
