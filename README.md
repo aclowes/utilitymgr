@@ -6,7 +6,7 @@ Get started:
     pyenv virtualenv 3.8.2 utilitymgr
     pyenv local utilitymgr
 
-    curl -O https://chromedriver.storage.googleapis.com/81.0.4044.69/chromedriver_mac64.zip
+    curl -O https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_mac64.zip
     unzip chromedriver_mac64.zip
     rm chromedriver_mac64.zip
     

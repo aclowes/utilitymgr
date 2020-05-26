@@ -1,16 +1,21 @@
+import os
+
 import utilitymgr.jendobson_gb as gb
 import matplotlib.pyplot as plt
 
 
-def main(data_file):
-    df = gb.dataframe_from_xml(data_file)
-
+def main():
+    accounts = os.environ['SCE_ACCOUNTS'].split(' ')
     plt.figure(figsize=(14, 2))
-    plt.plot(df['Start Time'], df['Wh'])
+    lines = []
+    for index, account in enumerate(accounts):
+        df = gb.dataframe_from_xml(f'data/sce_{account}.xml')
+        line = plt.plot(df['Start Time'], df['Wh'], label=account)
+        lines.append(line)
     plt.ylabel('Wh')
-    plt.show()
-    pass
+    plt.legend()
+    plt.savefig(f'data/sce.png')
 
 
 if __name__ == '__main__':
-    main('data/data.xml')
+    main()

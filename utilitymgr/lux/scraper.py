@@ -19,10 +19,10 @@ def main():
     password.send_keys(os.environ['LUX_PASSWORD'])
     password.send_keys('\n')
     driver.find_element_by_id('tstats')
-    today = datetime.date.today().strftime('%Y-%m-%d')
+    start = (datetime.date.today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
     for thermostat in os.environ['LUX_THERMOSTATS'].split(' '):
         base_url = ('https://my.luxproducts.com/connect/rest/gateways/'
-                    f'{thermostat}/usage?bucket-size=PT15M&duration=P3D&day={today}')
+                    f'{thermostat}/usage?bucket-size=PT60M&duration=P7D&day={start}')
         script = download_script % base_url
         response = driver.execute_script(script)
         with open(f'data/lux_{thermostat}.json', 'w') as data_file:
