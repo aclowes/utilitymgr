@@ -5,7 +5,7 @@ import yaml
 
 TASK = """
 name: Building energy use
-schedule: 0 0 *
+schedule: 0 * *
 schedule_active: True
 
 tasks:
@@ -27,7 +27,7 @@ def client(method, endpoint, json):
 
 
 def create_workflow():
-    workflow = yaml.load(open('task.yaml').read())
+    workflow = yaml.load(TASK)
     return client('post', 'workflows/', workflow).json()['id']
 
 

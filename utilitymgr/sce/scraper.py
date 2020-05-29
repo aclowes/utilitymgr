@@ -30,8 +30,8 @@ def main():
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
     for account in os.environ['SCE_ACCOUNTS'].split(' '):
-        end_date = datetime.date.today().strftime('%m/%d/%Y')
-        start_date = (datetime.date.today() - datetime.timedelta(days=7)).strftime('%m/%d/%Y')
+        end_date = (datetime.date.today() + datetime.timedelta(days=1)).strftime('%m/%d/%Y')
+        start_date = (datetime.date.today() - datetime.timedelta(days=6)).strftime('%m/%d/%Y')
         script = download_script % (account, start_date, end_date)
         response = driver.execute_script(script)
         with open(f'data/sce_{account}.xml', 'w') as data_file:

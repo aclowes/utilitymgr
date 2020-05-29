@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 
@@ -25,14 +26,19 @@ def main():
             ),
             data=data['events']['ambient_change']['values']
         )
-        plt.figure(figsize=(14, 2))
-        plt.plot(ambient.index, ambient.values)
-        plt.ylabel('Temperature °F')
+        plt.figure(figsize=(12, 2))
+        ax1 = plt.gca()
+        bar_config = {'width': 0.05, 'align': 'edge'}
+        ax1.bar(heat.index, heat.values, label='heat', color='orangered', **bar_config)
+        ax1.bar(cool.index, cool.values, bottom=heat.values, label='cool', color='royalblue', **bar_config)
+        ax1.set_ylabel('Runtime minutes')
+        ax1.legend(bbox_to_anchor=(-.06, 0), loc='lower right', edgecolor='white')
         ax2 = plt.twinx()
-        ax2.bar(heat.index, heat.values, label='heat', align='edge')
-        ax2.bar(cool.index, cool.values, bottom=heat.values, label='cool', align='edge')
-        ax2.set_ylabel('Runtime minutes')
-        plt.legend()
+        ax2.plot(ambient.index, ambient.values, color='darkslategrey')
+        ax2.set_ylabel('Temperature °F')
+        x_start = datetime.date.today() - datetime.timedelta(days=6)
+        x_end = datetime.date.today() + datetime.timedelta(days=1)
+        plt.xlim(x_start, x_end)
         plt.savefig(f'data/lux_{index}.png')
 
 
