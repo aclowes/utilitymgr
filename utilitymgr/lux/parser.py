@@ -1,10 +1,10 @@
-import datetime
 import json
 import os
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import pytz
+
+from utilitymgr import utils
 
 
 def main():
@@ -39,10 +39,7 @@ def main():
         ax2.plot(ambient.index, ambient.values, color='darkslategrey')
         ax2.set_ylabel('Temperature °F')
         ax2.set_ylim(50, 85)
-        now = datetime.datetime.now(tz=pytz.utc).astimezone(pytz.timezone('US/Pacific'))
-        x_start = now.date() - datetime.timedelta(days=6)
-        x_end = now.date() + datetime.timedelta(days=1)
-        plt.xlim(x_start, x_end)
+        plt.xlim(utils.week_start_end())
         plt.savefig(f'data/lux_{index}.png')
 
 

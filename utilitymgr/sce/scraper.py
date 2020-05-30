@@ -1,8 +1,9 @@
 import os
 import time
-import datetime
 
 from selenium import webdriver
+
+from utilitymgr import utils
 
 download_script = """
 svc = new DataDownloadService(app.logger);
@@ -30,8 +31,7 @@ def main():
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
     for account in os.environ['SCE_ACCOUNTS'].split(' '):
-        end_date = (datetime.date.today() + datetime.timedelta(days=1)).strftime('%m/%d/%Y')
-        start_date = (datetime.date.today() - datetime.timedelta(days=6)).strftime('%m/%d/%Y')
+        start_date, end_date = map(lambda x: x.strftime('%m/%d/%Y'), utils.week_start_end())
         script = download_script % (account, start_date, end_date)
         response = driver.execute_script(script)
         with open(f'data/sce_{account}.xml', 'w') as data_file:

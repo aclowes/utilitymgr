@@ -1,7 +1,8 @@
 import os
-import datetime
 
 from selenium import webdriver
+
+from utilitymgr import utils
 
 download_script = """
 var response = await fetch('%s');
@@ -19,7 +20,7 @@ def main():
     password.send_keys(os.environ['LUX_PASSWORD'])
     password.send_keys('\n')
     driver.find_element_by_id('tstats')
-    start = (datetime.date.today() - datetime.timedelta(days=6)).strftime('%Y-%m-%d')
+    start = utils.week_start_end()[0].strftime('%Y-%m-%d')
     for thermostat in os.environ['LUX_THERMOSTATS'].split(' '):
         base_url = ('https://my.luxproducts.com/connect/rest/gateways/'
                     f'{thermostat}/usage?bucket-size=PT60M&duration=P7D&day={start}')
