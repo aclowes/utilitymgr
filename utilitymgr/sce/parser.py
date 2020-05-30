@@ -1,6 +1,8 @@
 import datetime
 import os
 
+import pytz
+
 import utilitymgr.jendobson_gb as gb
 import matplotlib.pyplot as plt
 
@@ -14,8 +16,9 @@ def main():
         line = plt.plot(df['Start Time'], df['Wh'], label=f'Account {str(account)[-2:]}')
         lines.append(line)
     plt.ylabel('Wh')
-    x_start = datetime.date.today() - datetime.timedelta(days=6)
-    x_end = datetime.date.today() + datetime.timedelta(days=1)
+    now = datetime.datetime.now(tz=pytz.utc).astimezone(pytz.timezone('US/Pacific'))
+    x_start = now.date() - datetime.timedelta(days=6)
+    x_end = now.date() + datetime.timedelta(days=1)
     plt.xlim(x_start, x_end)
     plt.legend()
     plt.savefig(f'data/sce.png')

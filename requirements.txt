@@ -2,4 +2,5 @@ google-cloud-storage
 lxml
 matplotlib
 pandas
+pytz
 selenium==3.141.0
