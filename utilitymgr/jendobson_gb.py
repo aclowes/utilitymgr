@@ -45,5 +45,9 @@ def dataframe_from_xml(xmlfile):
         for interval_reading in get_interval_readings(interval_block):
             readings.append(parse_reading(interval_reading))
 
-    return pd.DataFrame(readings, columns=['Start Time', 'Duration', 'Wh'])
+    result = pd.DataFrame(readings, columns=['Start Time', 'Duration', 'Wh'])
+    dst_offset = int(root.find('default:entry/default:content/reading:LocalTimeParameters/reading:dstOffset', ns).text)
+    tz_offset = int(root.find('default:entry/default:content/reading:LocalTimeParameters/reading:tzOffset', ns).text)
+    result['Start Time'] += datetime.timedelta(seconds=(dst_offset + tz_offset))
+    return result
 

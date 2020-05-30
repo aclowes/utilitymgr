@@ -8,7 +8,7 @@ if ! which google-chrome > /dev/null; then
   apt-get update && apt install -y google-chrome-stable
 fi
 
-echo '/usr/bin/google-chrome --no-sandbox --headless --disable-dev-shm-usage --disable-gpu --enable-crash-reporter --enable-logging --v=2 "$@"' > /usr/local/bin/google-chrome
+echo 'exec /usr/bin/google-chrome --no-sandbox --headless --disable-dev-shm-usage --disable-gpu --enable-crash-reporter --enable-logging --v=2 "$@"' > /usr/local/bin/google-chrome
 chmod +x /usr/local/bin/google-chrome
 
 # clone if it doesn't exist
