@@ -38,6 +38,7 @@ def upload(bucket, filename, archive=False):
     if archive:
         target = f'archive/{datetime.date.today().isoformat()}_{filename}'
     blob = bucket.blob(f'utilitymgr/{target}')
+    blob.cache_control = 'no-store'
     blob.upload_from_filename(filename)
     if not archive:
         blob.make_public()
