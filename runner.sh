@@ -4,6 +4,7 @@ set -e
 
 # cleanup any leftover chrome instances
 pkill chrome || echo "none running"
+rm -rf /opt/google/chrome/chrome_debug.log
 
 if ! which google-chrome > /dev/null; then
   wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -23,7 +24,7 @@ pip install -q --upgrade pip setuptools
 pip install -q -r requirements.txt
 
 if ! ls chromedriver > /dev/null; then
-  curl -O https://chromedriver.storage.googleapis.com/83.0.4103.39/chromedriver_linux64.zip
+  curl -O https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip
   unzip chromedriver_linux64.zip
   rm chromedriver_linux64.zip
 fi
