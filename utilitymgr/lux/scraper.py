@@ -39,7 +39,7 @@ def main():
         refresh = response.json()
         tokens['access_token'] = refresh['access_token']
         tokens['refresh_token'] = refresh['refresh_token']
-        blob.upload_from_string(json.dumps(tokens))
+        blob.upload_from_string(json.dumps(tokens), content_type='application/json')
         headers['Authorization'] = f'Bearer {tokens["access_token"]}'
 
     # get data for each thermostat

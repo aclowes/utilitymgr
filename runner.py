@@ -11,14 +11,17 @@ from utilitymgr.lux import parser as lux_parser
 
 def run():
     # scrape lux
+    print('Scraping Lux')
     lux_scraper.main()
     lux_parser.main()
 
     # scrape sce
+    print('Scraping SCE')
     sce_scraper.main()
     sce_parser.main()
 
     # upload files
+    print('Uploading data')
     client = storage.Client()
     bucket = client.bucket('static.yawn.live')
     upload(bucket, 'index.html')
