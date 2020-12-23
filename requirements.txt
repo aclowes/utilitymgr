@@ -1,4 +1,4 @@
-google-cloud-storage==1.28.1
+google-cloud-storage==1.35.0
 lxml==4.5.0
 matplotlib==3.2.1
 pandas==1.0.3
