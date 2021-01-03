@@ -31,7 +31,7 @@ def main():
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
     for account in os.environ['SCE_ACCOUNTS'].split(' '):
-        start_date, end_date = map(lambda x: x.strftime('%m/%d/%Y'), utils.week_start_end())
+        start_date, end_date = map(lambda x: x.strftime('%m/%d/%y'), utils.week_start_end())
         script = download_script % (account, start_date, end_date)
         response = driver.execute_script(script)
         with open(f'data/sce_{account}.xml', 'w') as data_file:
