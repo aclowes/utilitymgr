@@ -24,7 +24,7 @@ pip install -q --upgrade pip setuptools
 pip install -q -r requirements.txt
 
 if ! ls chromedriver > /dev/null; then
-  curl -O https://chromedriver.storage.googleapis.com/87.0.4280.20/chromedriver_linux64.zip
+  curl -O https://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip
   unzip chromedriver_linux64.zip
   rm chromedriver_linux64.zip
 fi
