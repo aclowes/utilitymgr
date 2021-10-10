@@ -1,5 +1,6 @@
 import datetime
 import os
+import traceback
 
 from google.cloud import storage
 
@@ -12,13 +13,19 @@ from utilitymgr.lux import parser as lux_parser
 def run():
     # scrape lux
     print('Scraping Lux')
-    lux_scraper.main()
-    lux_parser.main()
+    try:
+        lux_scraper.main()
+        lux_parser.main()
+    except:  # noqa
+        traceback.print_exc()
 
     # scrape sce
     print('Scraping SCE')
-    sce_scraper.main()
-    sce_parser.main()
+    try:
+        sce_scraper.main()
+        sce_parser.main()
+    except:  # noqa
+        traceback.print_exc()
 
     # upload files
     print('Uploading data')
@@ -42,9 +49,12 @@ def upload(bucket, filename, archive=False):
         target = f'archive/{datetime.date.today().isoformat()}_{filename}'
     blob = bucket.blob(f'utilitymgr/{target}')
     blob.cache_control = 'no-store'
-    blob.upload_from_filename(filename)
-    if not archive:
-        blob.make_public()
+    try:
+        blob.upload_from_filename(filename)
+        if not archive:
+            blob.make_public()
+    except:  # noqa
+        traceback.print_exc()
 
 
 if __name__ == '__main__':
