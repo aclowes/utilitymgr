@@ -1,6 +1,7 @@
 import json
 import os
 
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -20,7 +21,7 @@ def main():
         # convert timestamp to dates and runtime to minutes
         df.timestamp = pd.to_datetime(df.timestamp)
         df.runtime = pd.to_timedelta(df.runtime) / pd.Timedelta(minutes=1)
-        df.airtemp = df.airtemp.replace(-1, pd.NA)
+        df.airtemp = df.airtemp.replace(-1, np.nan)
         plt.figure(figsize=(12, 2))
         ax1 = plt.gca()
         bar_config = {'width': 0.05, 'align': 'edge'}
