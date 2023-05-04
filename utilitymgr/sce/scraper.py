@@ -2,6 +2,7 @@ import os
 import time
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 from utilitymgr import utils
 
@@ -22,12 +23,12 @@ def main():
     driver = webdriver.Chrome('./chromedriver')
     driver.implicitly_wait(10)  # seconds
     driver.get('https://www.sce.com/')
-    username = driver.find_element_by_name('username')
+    username = driver.find_element(By.NAME, 'username')
     username.send_keys(os.environ['SCE_USERNAME'])
-    password = driver.find_element_by_name('password')
+    password = driver.find_element(By.Name, 'password')
     password.send_keys(os.environ['SCE_PASSWORD'])
     password.send_keys('\n')
-    driver.find_element_by_id('searchMyAccounts')
+    driver.find_element(By.ID, 'searchMyAccounts')
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
     for account in os.environ['SCE_ACCOUNTS'].split(' '):
