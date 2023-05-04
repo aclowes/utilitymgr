@@ -25,7 +25,7 @@ def main():
     driver.get('https://www.sce.com/')
     username = driver.find_element(By.NAME, 'username')
     username.send_keys(os.environ['SCE_USERNAME'])
-    password = driver.find_element(By.Name, 'password')
+    password = driver.find_element(By.NAME, 'password')
     password.send_keys(os.environ['SCE_PASSWORD'])
     password.send_keys('\n')
     driver.find_element(By.ID, 'searchMyAccounts')
