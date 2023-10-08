@@ -50,7 +50,7 @@ def rtp():
     for day in results:
         days.append(day.find_all("td")[1].text.split(" ")[0].lower())
     text = ", ".join(days)
-    html = html.replace('Pricing', f"Pricing: {text}")
+    html = html.replace('Pricing', f"Pricing next five days: {text}")
     open('data/index.html', 'w').write(html)
 
 
