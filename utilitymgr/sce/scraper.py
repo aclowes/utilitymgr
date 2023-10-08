@@ -1,6 +1,8 @@
 import os
 import time
 
+import requests
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -39,5 +41,19 @@ def main():
             data_file.write(response)
 
 
+def rtp():
+    html = open('index.html').read()
+    page = requests.get('https://www.sce.openadr.com/dr.website/scepr-event-status.jsf#')
+    soup = BeautifulSoup(page.content, "html.parser")
+    results = soup.find(id="RTPForecastDIV").find_all(class_="rich-table-row")
+    days = []
+    for day in results:
+        days.append(day.find_all("td")[1].text.split(" ")[0].lower())
+    text = ", ".join(days)
+    html = html.replace('Pricing', f"Pricing: {text}")
+    open('data/index.html', 'w').write(html)
+
+
 if __name__ == '__main__':
-    main()
+    # main()
+    rtp()

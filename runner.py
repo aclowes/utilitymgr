@@ -26,12 +26,13 @@ def run():
         sce_parser.main()
     except:  # noqa
         traceback.print_exc()
+    sce_scraper.rtp()
 
     # upload files
     print('Uploading data')
     client = storage.Client()
     bucket = client.bucket('static.yawn.live')
-    upload(bucket, 'index.html')
+    upload(bucket, 'data/index.html')
     upload(bucket, 'data/sce.png')
     upload(bucket, 'data/lux_0.png')
     upload(bucket, 'data/lux_1.png')
