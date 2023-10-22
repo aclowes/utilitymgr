@@ -45,9 +45,10 @@ def rtp():
     html = open('index.html').read()
     page = requests.get('https://www.sce.openadr.com/dr.website/scepr-event-status.jsf#')
     soup = BeautifulSoup(page.content, "html.parser")
+    results = soup.find(id="tempDatetime").find(class_="tempDatetimeBottom")
+    days = [results.text.split(" ")[0].lower().strip()]
     results = soup.find(id="RTPForecastDIV").find_all(class_="rich-table-row")
-    days = []
-    for day in results:
+    for day in results[:4]:
         days.append(day.find_all("td")[1].text.split(" ")[0].lower())
     text = ", ".join(days)
     html = html.replace('Pricing', f"Pricing next five days: {text}")

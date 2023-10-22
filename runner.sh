@@ -23,8 +23,9 @@ git pull
 pip install -q --upgrade pip setuptools
 pip install -q -r requirements.txt
 
+# https://googlechromelabs.github.io/chrome-for-testing/
 if ! ls chromedriver > /dev/null; then
-  curl -O https://chromedriver.storage.googleapis.com/113.0.5672.63/chromedriver_linux64.zip
+  curl -O https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/118.0.5993.70/linux64/chromedriver-linux64.zip
   unzip chromedriver_linux64.zip
   rm chromedriver_linux64.zip
 fi
