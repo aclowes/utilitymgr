@@ -28,7 +28,7 @@ pip install -q -r requirements.txt
 # https://googlechromelabs.github.io/chrome-for-testing/
 if ! ls chromedriver > /dev/null; then
   curl -O https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
-  unzip -j chromedriver-linux64.zip
+  unzip -j chromedriver_linux64.zip
 fi
 
 mkdir -p data
