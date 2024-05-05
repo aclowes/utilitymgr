@@ -16,6 +16,8 @@ def main():
             row
             for day in reversed(data["dailyruntime"])
             for row in day["sample"]
+            # todo remove hacky filter
+            if row['airtemp'] != -1
         ]
         df = pd.DataFrame.from_records(rows)
         # convert timestamp to dates and runtime to minutes
