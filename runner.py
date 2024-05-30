@@ -26,7 +26,7 @@ def run():
         sce_parser.main()
     except:  # noqa
         traceback.print_exc()
-    sce_scraper.rtp()
+    # sce_scraper.rtp()
 
     # upload files
     print('Uploading data')
