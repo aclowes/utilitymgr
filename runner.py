@@ -32,7 +32,7 @@ def run():
     print('Uploading data')
     client = storage.Client()
     bucket = client.bucket('static.yawn.live')
-    upload(bucket, 'data/index.html')
+    upload(bucket, 'index.html')  # change to data/ for rtp
     upload(bucket, 'data/sce.png')
     upload(bucket, 'data/lux_0.png')
     upload(bucket, 'data/lux_1.png')

@@ -30,7 +30,7 @@ def main():
     password = driver.find_element(By.NAME, 'password')
     password.send_keys(os.environ['SCE_PASSWORD'])
     password.send_keys('\n')
-    driver.find_element(By.ID, 'searchMyAccounts')
+    driver.find_element(By.ID, 'accountDetailsPopupLink')
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
     for account in os.environ['SCE_ACCOUNTS'].split(' '):
