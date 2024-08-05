@@ -56,5 +56,5 @@ def rtp():
 
 
 if __name__ == '__main__':
-    # main()
-    rtp()
+    main()
+    # rtp()

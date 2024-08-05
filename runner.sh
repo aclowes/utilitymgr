@@ -7,8 +7,9 @@ pkill chrome || echo "none running"
 rm -rf /opt/google/chrome/chrome_debug.log
 
 if ! which google-chrome > /dev/null; then
+  # find them here: https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/
   CHROME_VERSION='114.0.5735.198-1'
-  curl -O https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb
+  curl -O https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb
   apt-get update
   apt install -y ./google-chrome-stable_${CHROME_VERSION}_amd64.deb
   rm google-chrome-stable_${CHROME_VERSION}_amd64.deb
