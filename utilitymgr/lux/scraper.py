@@ -7,7 +7,8 @@ import requests
 
 from google.cloud import storage
 
-
+# get the token using mitmproxy. it changes every time you log in on a new device.
+# https://www.andyibanez.com/posts/intercepting-network-mitmproxy/
 TOKEN_URL = 'https://connecteddevicesjci.b2clogin.com/te/' \
             'connecteddevicesjci.onmicrosoft.com/B2C_1A_SignIn/oauth2/v2.0/token'
 THERMOSTAT_URL = 'https://www.myluxstat.io/api/device/runtime?deviceid={device}&currentdate={date}'
