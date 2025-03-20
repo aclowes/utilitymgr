@@ -32,7 +32,7 @@ def main():
     if response.status_code == 401:
         request = {
             'refresh_token': tokens['refresh_token'],
-            'client_id': tokens['client_id'],
+            # 'client_id': tokens['client_id'],
             'grant_type': 'refresh_token'
         }
         response = requests.post(TOKEN_URL, data=request)
