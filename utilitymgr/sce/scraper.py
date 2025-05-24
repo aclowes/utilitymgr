@@ -22,7 +22,7 @@ return await svc.getDataDownloadFile(reqObj);
 
 
 def main():
-    driver = webdriver.Chrome('./chromedriver')
+    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'))
     driver.implicitly_wait(10)  # seconds
     driver.get('https://www.sce.com/')
     username = driver.find_element(By.NAME, 'username')

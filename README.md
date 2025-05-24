@@ -6,6 +6,6 @@ Get started:
     . venv/bin/activate
     pip3 install -r requirements.txt
 
-    curl -O https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_mac64.zip
-    unzip chromedriver_mac64.zip
-    rm chromedriver_mac64.zip
+    curl -O https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.113/mac-arm64/chromedriver-mac-arm64.zip
+    unzip -j -o chromedriver-mac-arm64.zip chromedriver-mac-arm64/chromedriver 
+    rm chromedriver-mac-arm64.zip
