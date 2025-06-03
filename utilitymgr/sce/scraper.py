@@ -25,9 +25,11 @@ def main():
     driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'))
     driver.implicitly_wait(10)  # seconds
     driver.get('https://www.sce.com/')
-    username = driver.find_element(By.NAME, 'username')
+    driver.find_element(By.ID, "avatar-toggle").click()
+    driver.find_element(By.CSS_SELECTOR, "#logged-out > div.action > button").click()
+    username = driver.find_element(By.NAME, 'identifier')
     username.send_keys(os.environ['SCE_USERNAME'])
-    password = driver.find_element(By.NAME, 'password')
+    password = driver.find_element(By.NAME, 'credentials.passcode')
     password.send_keys(os.environ['SCE_PASSWORD'])
     password.send_keys('\n')
     driver.find_element(By.ID, 'accountDetailsPopupLink')
