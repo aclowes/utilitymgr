@@ -12,10 +12,10 @@ if ! which google-chrome > /dev/null; then
   while read -r pkg; do
     apt-get satisfy -y --no-install-recommends "${pkg}"
   done < chrome-linux64/deb.deps
-  rm chromedriver-linux64.zip
+  rm chrome-linux64.zip
 fi
 
-echo "exec $PWD/chrome-linux64/chrome --no-sandbox --headless \"\$@\"" > /usr/local/bin/google-chrome
+echo "exec $PWD/chrome-linux64/chrome --no-sandbox --headless --disable-dev-shm-usage \"\$@\"" > /usr/local/bin/google-chrome
 chmod +x /usr/local/bin/google-chrome
 
 # clone if it doesn't exist
