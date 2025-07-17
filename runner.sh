@@ -5,7 +5,7 @@ set -e
 # cleanup any leftover chrome instances
 pkill chrome || echo "none running"
 
-if ! which google-chrome; then
+if ! which google-chrome > /dev/null; then
   curl -O https://storage.googleapis.com/chrome-for-testing-public/138.0.7204.157/linux64/chrome-linux64.zip
   unzip chrome-linux64.zip
   apt-get update
@@ -27,7 +27,7 @@ pip install -q --upgrade pip setuptools
 pip install -q -r requirements.txt
 
 # https://googlechromelabs.github.io/chrome-for-testing/
-if ! ls chromedriver-linux64; then
+if ! ls chromedriver-linux64 > /dev/null; then
   curl -O https://storage.googleapis.com/chrome-for-testing-public/138.0.7204.157/linux64/chromedriver-linux64.zip
   unzip chromedriver-linux64.zip
   rm chromedriver-linux64.zip
