@@ -22,7 +22,7 @@ return await svc.getDataDownloadFile(reqObj);
 
 
 def main():
-    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver-linux64/chromedriver'))
+    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'))
     driver.implicitly_wait(10)  # seconds
     driver.get('https://www.sce.com/')
     driver.find_element(By.ID, "avatar-toggle").click()
