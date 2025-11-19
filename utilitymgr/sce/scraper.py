@@ -31,7 +31,7 @@ def main():
 
 
 def scrape(driver):
-    driver.implicitly_wait(30)  # seconds
+    driver.implicitly_wait(60)  # seconds
     driver.get('https://www.sce.com/')
     driver.find_element(By.ID, "avatar-toggle").click()
     driver.find_element(By.CSS_SELECTOR, "#logged-out > div.action > button").click()
