@@ -21,7 +21,16 @@ return await svc.getDataDownloadFile(reqObj);
 """
 
 
-def main(driver):
+def main():
+    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'))
+    try:
+        scrape(driver)
+    finally:
+        driver.save_screenshot("data/sce_screenshot.png")
+        driver.quit()
+
+
+def scrape(driver):
     driver.implicitly_wait(15)  # seconds
     driver.get('https://www.sce.com/')
     driver.find_element(By.ID, "avatar-toggle").click()
@@ -57,10 +66,5 @@ def rtp():
 
 
 if __name__ == '__main__':
-    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'))
-    try:
-        main(driver)
-    finally:
-        driver.save_screenshot("data/sce_screenshot.png")
-        driver.quit()
+    main()
     # rtp()
