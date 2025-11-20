@@ -4,6 +4,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
 
 from utilitymgr import utils
@@ -22,16 +23,19 @@ return await svc.getDataDownloadFile(reqObj);
 
 
 def main():
-    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'))
+    driver = webdriver.Chrome(service=webdriver.ChromeService('./chromedriver'), )
     try:
         scrape(driver)
     finally:
         driver.save_screenshot("data/sce_screenshot.png")
+        logs = driver.get_log("browser")
+        for log in logs:
+            print(log["message"])
         driver.quit()
 
 
 def scrape(driver):
-    driver.implicitly_wait(120)  # seconds
+    driver.implicitly_wait(30)  # seconds
     driver.get('https://www.sce.com/')
     driver.find_element(By.ID, "avatar-toggle").click()
     driver.find_element(By.CSS_SELECTOR, "#logged-out > div.action > button").click()
