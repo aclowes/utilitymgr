@@ -15,7 +15,7 @@ if ! which google-chrome > /dev/null; then
   rm chrome-linux64.zip
 fi
 
-echo "exec $PWD/chrome-linux64/chrome --no-sandbox --headless --window-size=1920,1080 --disable-dev-shm-usage \"\$@\"" > /usr/local/bin/google-chrome
+echo "exec $PWD/chrome-linux64/chrome --enable-unsafe-swiftshader --no-sandbox --headless --window-size=1920,1080 --disable-dev-shm-usage \"\$@\"" > /usr/local/bin/google-chrome
 chmod +x /usr/local/bin/google-chrome
 
 # clone if it doesn't exist
