@@ -44,7 +44,8 @@ def scrape(driver):
     password = driver.find_element(By.NAME, 'credentials.passcode')
     password.send_keys(os.environ['SCE_PASSWORD'])
     password.send_keys('\n')
-    driver.find_element(By.ID, 'accountDetailsPopupLink')
+    driver.find_element(By.ID, 'react-navigationcommon-container')
+    # driver.find_element(By.ID, 'accountDetailsPopupLink')
     driver.get('https://www.sce.com/sma/ESCAA/EscGreenButtonData')
     time.sleep(2)
     for account in os.environ['SCE_ACCOUNTS'].split(' '):
