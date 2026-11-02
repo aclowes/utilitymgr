@@ -4,43 +4,33 @@ import traceback
 
 from google.cloud import storage
 
-from utilitymgr.sce import scraper as sce_scraper
-from utilitymgr.sce import parser as sce_parser
-from utilitymgr.lux import scraper as lux_scraper
-from utilitymgr.lux import parser as lux_parser
+from utilitymgr import ecobee
+from utilitymgr import emporia
 
 
 def run():
-    # scrape lux
-    print('Scraping Lux')
+    print('Fetching ecobee')
     try:
-        lux_scraper.main()
-        lux_parser.main()
+        ecobee.main()
     except:  # noqa
         traceback.print_exc()
 
-    # scrape sce
-    print('Scraping SCE')
+    print('Fetching Emporia')
     try:
-        sce_scraper.main()
-        sce_parser.main()
+        emporia.main()
     except:  # noqa
         traceback.print_exc()
-    # sce_scraper.rtp()
 
     # upload files
     print('Uploading data')
     client = storage.Client()
     bucket = client.bucket('static.yawn.live')
-    upload(bucket, 'index.html')  # change to data/ for rtp
-    upload(bucket, 'data/sce.png')
-    upload(bucket, 'data/lux_0.png')
-    upload(bucket, 'data/lux_1.png')
-    upload(bucket, 'data/lux_2.png')
-    for account in os.environ['SCE_ACCOUNTS'].split(' '):
-        upload(bucket, f'data/sce_{account}.xml', True)
-    for thermostat in os.environ['LUX_THERMOSTATS'].split(' '):
-        upload(bucket, f'data/lux_{thermostat}.json', True)
+    upload(bucket, 'index.html')
+    upload(bucket, 'data/emporia.png')
+    for index in range(3):
+        upload(bucket, f'data/ecobee_{index}.png')
+    upload(bucket, 'data/emporia.json', True)
+    upload(bucket, 'data/ecobee.json', True)
     print('View the results at http://static.yawn.live/utilitymgr/')
 
 

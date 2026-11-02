@@ -1,5 +1,10 @@
 .python-version
-chromedriver
 data/
 .idea/
 venv/
+.env
+ecobee_tokens.json
+emporia_tokens.json
+emporia_store.json
+token.txt
+__pycache__/
