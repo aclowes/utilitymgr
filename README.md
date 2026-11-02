@@ -33,6 +33,7 @@ and refreshes them on every run. Neither vendor offers API keys, so seed them on
   window.__emporia = JSON.stringify(out, null, 2);
   console.table(keys.map((k, i) => ({ key: k, length: JSON.stringify(vals[i]).length })));
 })();
+// then, as a separate console command once the table prints:
 copy(window.__emporia)
 ```
 
